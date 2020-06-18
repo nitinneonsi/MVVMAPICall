@@ -10,22 +10,33 @@ import UIKit
 
 class ViewController: UIViewController {
 
-    var media = [Media]()
-    var user = [User]()
-    var articles = [Articles]()
+    @IBOutlet weak var tableViewArticles: UITableView!
+
+    let articleVM = ArticleViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let articleVM = ArticleViewModel()
+        articleVM.vc = self
+        articleVM.loadData()
+    }
+}
+
+extension ViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return articleVM.jsonHelper.articleResponse.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        articleVM.getDataFromAPI(completion: {[weak self] response in
-            
-            self?.articles = response
-            
-            //print("Response = \(String(describing: self?.articles))")
-            
-        })
+        let cell = tableViewArticles.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
+        
+        let article = articleVM.jsonHelper.articleResponse[indexPath.row]
+        cell.articlesCell = article
+        cell.configCell()
+        
+        return cell
     }
 }
 
