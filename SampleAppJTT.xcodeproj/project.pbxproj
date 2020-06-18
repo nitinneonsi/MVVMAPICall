@@ -15,8 +15,10 @@
 		CC86728F249AA17200AB868D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CC86728D249AA17200AB868D /* LaunchScreen.storyboard */; };
 		CC86729A249AA17200AB868D /* SampleAppJTTTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC867299249AA17200AB868D /* SampleAppJTTTests.swift */; };
 		CC8672AB249B987A00AB868D /* Media.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8672A8249B987900AB868D /* Media.swift */; };
-		CC8672AC249B987A00AB868D /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8672A9249B987A00AB868D /* Articles.swift */; };
 		CC8672AD249B987A00AB868D /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8672AA249B987A00AB868D /* User.swift */; };
+		CC8672B0249B9A1A00AB868D /* ServiceHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8672AF249B9A1A00AB868D /* ServiceHelper.swift */; };
+		CC8672B1249B9B6300AB868D /* Articles.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8672A9249B987A00AB868D /* Articles.swift */; };
+		CC8672B4249B9E0100AB868D /* ArticleViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC8672B2249B9CC700AB868D /* ArticleViewModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +46,8 @@
 		CC8672A8249B987900AB868D /* Media.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Media.swift; sourceTree = "<group>"; };
 		CC8672A9249B987A00AB868D /* Articles.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Articles.swift; sourceTree = "<group>"; };
 		CC8672AA249B987A00AB868D /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		CC8672AF249B9A1A00AB868D /* ServiceHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceHelper.swift; sourceTree = "<group>"; };
+		CC8672B2249B9CC700AB868D /* ArticleViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArticleViewModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +89,7 @@
 		CC867280249AA17200AB868D /* SampleAppJTT */ = {
 			isa = PBXGroup;
 			children = (
+				CC8672AE249B99F000AB868D /* HelperClasses */,
 				CC8672A5249B977700AB868D /* Model */,
 				CC8672A6249B977E00AB868D /* ViewModel */,
 				CC8672A4249B976D00AB868D /* View */,
@@ -118,6 +123,9 @@
 		CC8672A5249B977700AB868D /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				CC8672A9249B987A00AB868D /* Articles.swift */,
+				CC8672A8249B987900AB868D /* Media.swift */,
+				CC8672AA249B987A00AB868D /* User.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -125,9 +133,7 @@
 		CC8672A6249B977E00AB868D /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
-				CC8672A9249B987A00AB868D /* Articles.swift */,
-				CC8672A8249B987900AB868D /* Media.swift */,
-				CC8672AA249B987A00AB868D /* User.swift */,
+				CC8672B2249B9CC700AB868D /* ArticleViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -138,6 +144,14 @@
 				CC867283249AA17200AB868D /* ViewController.swift */,
 			);
 			path = Controller;
+			sourceTree = "<group>";
+		};
+		CC8672AE249B99F000AB868D /* HelperClasses */ = {
+			isa = PBXGroup;
+			children = (
+				CC8672AF249B9A1A00AB868D /* ServiceHelper.swift */,
+			);
+			path = HelperClasses;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -241,11 +255,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CC8672B4249B9E0100AB868D /* ArticleViewModel.swift in Sources */,
+				CC8672B1249B9B6300AB868D /* Articles.swift in Sources */,
 				CC867284249AA17200AB868D /* ViewController.swift in Sources */,
+				CC8672B0249B9A1A00AB868D /* ServiceHelper.swift in Sources */,
 				CC867282249AA17200AB868D /* AppDelegate.swift in Sources */,
 				CC8672AD249B987A00AB868D /* User.swift in Sources */,
 				CC8672AB249B987A00AB868D /* Media.swift in Sources */,
-				CC8672AC249B987A00AB868D /* Articles.swift in Sources */,
 				CC86728A249AA17200AB868D /* SampleAppJTT.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

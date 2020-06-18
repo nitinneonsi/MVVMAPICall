@@ -10,11 +10,22 @@ import UIKit
 
 class ViewController: UIViewController {
 
+    var media = [Media]()
+    var user = [User]()
+    var articles = [Articles]()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        
+        let articleVM = ArticleViewModel()
+        
+        articleVM.getDataFromAPI(completion: {[weak self] response in
+            
+            self?.articles = response
+            
+            //print("Response = \(String(describing: self?.articles))")
+            
+        })
     }
-
-
 }
 
