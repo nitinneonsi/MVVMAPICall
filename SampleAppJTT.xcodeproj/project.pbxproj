@@ -79,11 +79,12 @@
 		CC867280249AA17200AB868D /* SampleAppJTT */ = {
 			isa = PBXGroup;
 			children = (
+				CC8672A5249B977700AB868D /* Model */,
+				CC8672A6249B977E00AB868D /* ViewModel */,
+				CC8672A4249B976D00AB868D /* View */,
+				CC8672A7249B978600AB868D /* Controller */,
 				CC867281249AA17200AB868D /* AppDelegate.swift */,
-				CC867283249AA17200AB868D /* ViewController.swift */,
-				CC867285249AA17200AB868D /* Main.storyboard */,
 				CC86728B249AA17200AB868D /* Assets.xcassets */,
-				CC86728D249AA17200AB868D /* LaunchScreen.storyboard */,
 				CC867290249AA17200AB868D /* Info.plist */,
 				CC867288249AA17200AB868D /* SampleAppJTT.xcdatamodeld */,
 			);
@@ -97,6 +98,37 @@
 				CC86729B249AA17200AB868D /* Info.plist */,
 			);
 			path = SampleAppJTTTests;
+			sourceTree = "<group>";
+		};
+		CC8672A4249B976D00AB868D /* View */ = {
+			isa = PBXGroup;
+			children = (
+				CC867285249AA17200AB868D /* Main.storyboard */,
+				CC86728D249AA17200AB868D /* LaunchScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		CC8672A5249B977700AB868D /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		CC8672A6249B977E00AB868D /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		CC8672A7249B978600AB868D /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				CC867283249AA17200AB868D /* ViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
