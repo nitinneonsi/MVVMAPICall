@@ -7,36 +7,38 @@
 //
 
 import UIKit
+import PagingTableView
 
 class ViewController: UIViewController {
 
-    @IBOutlet weak var tableViewArticles: UITableView!
-
+    @IBOutlet weak var tableViewArticles: PagingTableView!
+    
     let articleVM = ArticleViewModel()
+    let jsonHelper = ServiceHelper()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        articleVM.vc = self
-        articleVM.loadData()
+        tableViewArticles.pagingDelegate = self
     }
 }
 
-extension ViewController: UITableViewDelegate, UITableViewDataSource {
+extension ViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return articleVM.jsonHelper.articleResponse.count
+        return jsonHelper.articleResponse.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableViewArticles.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
         
-        let article = articleVM.jsonHelper.articleResponse[indexPath.row]
+        let article = jsonHelper.articleResponse[indexPath.row]
         cell.articlesCell = article
         cell.configCell()
         
         return cell
     }
 }
+
 

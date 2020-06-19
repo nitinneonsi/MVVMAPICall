@@ -8,19 +8,38 @@
 
 import Foundation
 import UIKit
+import PagingTableView
 
 class ArticleViewModel {
     
-    weak var vc : ViewController?
-    let jsonHelper = ServiceHelper()
-    
-    func loadData()  {
-        jsonHelper.getAPIData(completion: {[weak self] response in
+    func formatNumber(_ n: Int) -> String {
+        
+        let num = abs(Double(n))
+        let sign = (n < 0) ? "-" : ""
+        
+        switch num {
             
-            DispatchQueue.main.async {
-                self?.vc?.tableViewArticles.reloadData()
-            }
-        })
+        case 1_000_000_000...:
+            var formatted = num / 1_000_000_000
+            formatted = formatted.truncate(places: 1)
+            return "\(sign)\(formatted)B"
+            
+        case 1_000_000...:
+            var formatted = num / 1_000_000
+            formatted = formatted.truncate(places: 1)
+            return "\(sign)\(formatted)M"
+            
+        case 1_000...:
+            var formatted = num / 1_000
+            formatted = formatted.truncate(places: 1)
+            return "\(sign)\(formatted)K"
+            
+        case 0...:
+            return "\(n)"
+            
+        default:
+            return "\(sign)\(n)"
+        }
     }
 }
 
@@ -91,5 +110,16 @@ extension Date {
         }
         
         return "just now"
+    }
+}
+
+extension ViewController: PagingTableViewDelegate {
+    
+    func paginate(_ tableView: PagingTableView, to page: Int) {
+        tableViewArticles.isLoading = true
+        jsonHelper.getAPIData(page: page+1) { Articles in
+            self.jsonHelper.articleResponse.append(contentsOf: Articles)
+            self.tableViewArticles.isLoading = false
+        }
     }
 }
