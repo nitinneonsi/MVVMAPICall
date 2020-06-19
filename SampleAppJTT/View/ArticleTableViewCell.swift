@@ -38,6 +38,7 @@ class ArticleTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    // Mark: Configuring Cell for tableView
     func configCell() {
         
         userImage.layer.borderWidth = 1
@@ -61,14 +62,12 @@ class ArticleTableViewCell: UITableViewCell {
             let url = URL(string: userImageUrl)
             userImage.kf.setImage(with: url)
         }
-        else{
-            
-        }
 
         guard !(articlesCell?.media?.isEmpty)! else {
             heightConstraintArticleImg.constant = 0
             return
         }
+        heightConstraintArticleImg.constant = 175
         lblArticleTittle.text = articlesCell?.media?[0].title ?? ""
         lblArticleUrl.text = articlesCell?.media?[0].url ?? ""
 
@@ -77,8 +76,7 @@ class ArticleTableViewCell: UITableViewCell {
             articleImage.kf.setImage(with: url)
         }
         else{
-            
+            heightConstraintArticleImg.constant = 0
         }
     }
 }
-

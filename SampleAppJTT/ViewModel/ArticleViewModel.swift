@@ -12,6 +12,7 @@ import PagingTableView
 
 class ArticleViewModel {
     
+    // Mark: Formatting number for likes and comments
     func formatNumber(_ n: Int) -> String {
         
         let num = abs(Double(n))
@@ -57,6 +58,7 @@ extension Double {
 }
 
 extension String {
+    // Mark: Formatting date
     func toDate(withFormat format: String) -> Date {
         let dateFormatter = DateFormatter()
         dateFormatter.locale = Locale(identifier: "en_US_POSIX")
@@ -69,12 +71,11 @@ extension String {
 }
 
 extension Date {
-    
+    // Mark: Calculating time passed from the created date
     func timeAgoSinceDate() -> String {
         
         // From Time
         let fromDate = self
-        
         // To Time
         let toDate = Date()
         
@@ -84,37 +85,50 @@ extension Date {
             
             return interval == 1 ? "\(interval)" + " " + "year" : "\(interval)" + " " + "years"
         }
-        
         // Month
         if let interval = Calendar.current.dateComponents([.month], from: fromDate, to: toDate).month, interval > 0  {
             
             return interval == 1 ? "\(interval)" + " " + "month" : "\(interval)" + " " + "months"
         }
-        
         // Day
         if let interval = Calendar.current.dateComponents([.day], from: fromDate, to: toDate).day, interval > 0  {
             
             return interval == 1 ? "\(interval)" + " " + "day" : "\(interval)" + " " + "days"
         }
-        
         // Hours
         if let interval = Calendar.current.dateComponents([.hour], from: fromDate, to: toDate).hour, interval > 0 {
             
             return interval == 1 ? "\(interval)" + " " + "hour" : "\(interval)" + " " + "hours"
         }
-        
         // Minute
         if let interval = Calendar.current.dateComponents([.minute], from: fromDate, to: toDate).minute, interval > 0 {
             
             return interval == 1 ? "\(interval)" + " " + "min" : "\(interval)" + " " + "mins"
         }
-        
         return "just now"
     }
 }
 
-extension ViewController: PagingTableViewDelegate {
+extension ViewController: UITableViewDataSource {
+    // Mark: TableView Data Source
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return jsonHelper.articleResponse.count
+    }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableViewArticles.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
+        
+        let article = jsonHelper.articleResponse[indexPath.row]
+        cell.articlesCell = article
+        cell.configCell()
+        
+        return cell
+    }
+}
+
+extension ViewController: PagingTableViewDelegate {
+    // Mark: Load more data (Pagination)
     func paginate(_ tableView: PagingTableView, to page: Int) {
         tableViewArticles.isLoading = true
         jsonHelper.getAPIData(page: page+1) { Articles in

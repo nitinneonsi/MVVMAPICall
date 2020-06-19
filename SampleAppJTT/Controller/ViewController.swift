@@ -22,23 +22,3 @@ class ViewController: UIViewController {
         tableViewArticles.pagingDelegate = self
     }
 }
-
-extension ViewController: UITableViewDataSource {
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return jsonHelper.articleResponse.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        let cell = tableViewArticles.dequeueReusableCell(withIdentifier: "articleCell", for: indexPath) as! ArticleTableViewCell
-        
-        let article = jsonHelper.articleResponse[indexPath.row]
-        cell.articlesCell = article
-        cell.configCell()
-        
-        return cell
-    }
-}
-
-
